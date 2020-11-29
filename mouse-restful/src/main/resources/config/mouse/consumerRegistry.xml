@@ -15,10 +15,9 @@
     </dubbo:application>
 
     <!-- 注册中心配置 -->
-    <dubbo:registry id="mouse_prd" protocol="zookeeper" address="${dubbo.registry.address}" group="${dubbo.group}"/>
+    <dubbo:registry id="mouse_prd" protocol="zookeeper" address="${dubbo.registry.address}"/>
 
     <!-- 消费启动检查 -->
     <dubbo:consumer check="false" />
 
-    <import resource="classpath:/config/mouse/config.xml"/>
 </beans>

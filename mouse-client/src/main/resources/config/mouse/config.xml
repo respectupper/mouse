@@ -19,18 +19,4 @@
     <!--        日志切面-->
     <bean class="com.zjl.mouse.mouseclient.utils.LogInterceptor" id="logInterceptor"/>
 
-    <aop:config>
-        <!--        controller层aop日志打印-->
-        <aop:pointcut id="controllerLog" expression="execution(* com.zjl.mouse.*.controller.*.*(..)) &amp;&amp; !execution(* com.zjl.mouse.*.controller.*.upload*(..))"/>
-        <!--        service层aop日志打印-->
-<!--        <aop:pointcut id="serviceLog" expression="execution(* com.zjl.mouse.*.service.*Impl.*(..))"/>-->
-        <aop:pointcut id="serviceLog" expression="execution(* com.zjl.mouse.mouse.test.service.TestServiceImpl.*(..))"/>
-
-        <aop:aspect id="controllerLogAspect" ref="logInterceptor">
-            <aop:around method="around" pointcut-ref="controllerLog"/>
-        </aop:aspect>
-        <aop:aspect id="serviceLogAspect" ref="logInterceptor">
-            <aop:around method="around" pointcut-ref="serviceLog"/>
-        </aop:aspect>
-    </aop:config>
 </beans>

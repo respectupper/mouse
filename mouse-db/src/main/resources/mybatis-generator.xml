@@ -53,11 +53,16 @@
 		</javaClientGenerator>
 
 		<!--生成对应表及类名 -->
-		<table tableName="VAKA_USER" mapperName="VakaUserDAO">
+		<table tableName="vaka_user" mapperName="VakaUserDAO">
 			<columnOverride column="UID" javaType="Long"/>
 			<columnOverride column="BIRTHDAY" jdbcType="TIMESTAMP" />
 			<columnOverride column="CREATE_TABLE" jdbcType="TIMESTAMP" />
 			<columnOverride column="UPDATE_TABLE" jdbcType="TIMESTAMP" />
+		</table>
+		<table tableName="vaka_oss" mapperName="VakaOssDAO">
+			<columnOverride column="F_ID" javaType="Long"/>
+			<columnOverride column="CREATE_DATE" jdbcType="TIMESTAMP" />
+			<columnOverride column="UPDATE_DATE" jdbcType="TIMESTAMP" />
 		</table>
 
 	</context>

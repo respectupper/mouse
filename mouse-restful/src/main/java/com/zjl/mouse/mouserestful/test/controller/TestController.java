@@ -22,4 +22,10 @@ public class TestController {
         TestResVO value = testService.getValue(testReqVO);
         return JSONObject.toJSONString(value);
     }
+
+    @RequestMapping(value = "/getListValue", method = RequestMethod.POST)
+    String getListValue(@RequestBody TestReqVO testReqVO){
+        TestResVO value = testService.getListValue(testReqVO);
+        return JSONObject.toJSONString(value);
+    }
 }

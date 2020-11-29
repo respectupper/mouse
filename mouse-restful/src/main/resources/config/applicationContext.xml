@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--日志切面-->
+    <aop:config>
+        <aop:pointcut id="controllerLog" expression="execution(* com.zjl.mouse.*.controller.*.*(..)) &amp;&amp; !execution(* com.zjl.mouse.*.controller.*.upload*(..))"/>
+        <aop:aspect id="controllerLogAspect" ref="logInterceptor">
+            <aop:around method="around" pointcut-ref="controllerLog"/>
+        </aop:aspect>
+    </aop:config>
 
     <import resource="classpath:/config/mouse/consumerRegistry.xml"/>
     <import resource="classpath:/config/mouse/dubboClient.xml"/>
+    <import resource="classpath:/config/mouse/config.xml"/>
 </beans>

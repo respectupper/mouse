@@ -39,6 +39,7 @@ public class LogInterceptor {
             if(afterParam[0]==null){
                 System.out.println("null");
             }else {
+                System.out.println("入参:");
                 System.out.println(JSONObject.toJSONString(afterParam[0]));
             }
         }else {
