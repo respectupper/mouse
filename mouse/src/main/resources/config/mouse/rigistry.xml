@@ -20,5 +20,5 @@
     <dubbo:consumer check="false" filter="clientTraceFilter" />
 
     <!-- 服务发布通用配置，包括超时时间、重试方式、版本、对应发布的注册中心 -->
-    <dubbo:provider filter="serverTraceFilter" />
+    <dubbo:provider filter="serverTraceFilter" retries="0"/>
 </beans>
