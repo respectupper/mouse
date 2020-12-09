@@ -6,7 +6,6 @@
     <aop:config>
         <aop:aspect ref="restfulTraceAdvice">
             <aop:around method="around" pointcut="execution(* com.zjl.mouse.mouserestful..*.controller.*.*(..)) and @annotation(org.springframework.web.bind.annotation.RequestMapping)" />
-            <aop:around method="around" pointcut="execution(* com.zjl.mouse.mouserestful..*.service.*.*(..))" />
         </aop:aspect>
     </aop:config>
     <import resource="classpath:/config/mouse/consumerRegistry.xml"/>
