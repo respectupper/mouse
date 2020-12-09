@@ -16,5 +16,7 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd
        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
        default-lazy-init="true">
-
+    <bean id="SpringContext"
+          class="com.zjl.mouse.mouseclient.utils.context.SpringContext"
+          lazy-init="false" />
 </beans>

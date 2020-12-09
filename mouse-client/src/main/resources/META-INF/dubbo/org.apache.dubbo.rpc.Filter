@@ -1,0 +1,2 @@
+clientTraceFilter=com.zjl.mouse.mouseclient.utils.trace.dubbo.filter.ClientTraceFilter
+serverTraceFilter=com.zjl.mouse.mouseclient.utils.trace.dubbo.filter.ServerTraceFilter
