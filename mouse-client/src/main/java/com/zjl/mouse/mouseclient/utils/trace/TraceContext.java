@@ -33,8 +33,8 @@ public class TraceContext {
             LocalTrace localTrace = currentTrace.get();
             localTrace.setTraceId(new SimpleDateFormat("yyyyMMdd").format(now) + "-" + UUID.randomUUID().toString().replace("-", ""));
             localTrace.setRootSpan(true);
-            localTrace  .setSpanId("0");
-            logger.debug("初始化traceID=" + ((LocalTrace)currentTrace.get()).getTraceId());
+            localTrace.setSpanId("0");
+            logger.debug("初始化traceID=" + currentTrace.get().getTraceId());
         }
 
     }

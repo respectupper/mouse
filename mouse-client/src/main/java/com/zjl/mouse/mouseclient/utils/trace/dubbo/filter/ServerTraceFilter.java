@@ -26,10 +26,11 @@ public class ServerTraceFilter implements Filter {
         }
 
         String traceId = RpcContext.getContext().getAttachment("traceId");
-        String spanId = RpcContext.getContext().getAttachment("spanId");
+        String spanId = (RpcContext.getContext().getAttachment("spanId") == null||RpcContext.getContext().getAttachment("spanId").length()==0)?"0":RpcContext.getContext().getAttachment("spanId");
         String clientIp = RpcContext.getContext().getAttachment("clientIp");
         String clientGroup = RpcContext.getContext().getAttachment("clientGroup");
         TraceContext.initTrace(traceId, spanId);
+        String currSubSpanId = TraceContext.initCurrSubSpanId();
         TraceContext.setTag("clientIp", clientIp);
         TraceContext.setTag("clientGroup", clientGroup);
         TraceContext.setTag("method", method.getName());
