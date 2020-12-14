@@ -13,4 +13,5 @@
     <import resource="classpath:/config/mouse/dubboClient.xml"/>
     <import resource="classpath:/config/mouse/traceConfig.xml"/>
     <import resource="classpath:/config/mouse/baseConfig.xml"/>
+    <import resource="classpath:/config/mouse/authConfig.xml"/>
 </beans>
