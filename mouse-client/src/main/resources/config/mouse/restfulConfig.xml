@@ -17,4 +17,13 @@
        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
        default-lazy-init="true">
 
+    <!--   通用异常返回切面-->
+    <bean class="com.zjl.mouse.mouseclient.utils.restful.exception.ExceptionReturn" id="restfulExceptionInterceptor"/>
+    <aop:config>
+        <!--   通用异常返回切点-->
+        <aop:pointcut id="exceptionPointcut" expression="execution(* com.zjl.mouse.mouserestful.*.controller.*.*(..))"/>
+        <aop:aspect id="exceptionAspect" ref="restfulExceptionInterceptor">
+            <aop:around method="around" pointcut-ref="exceptionPointcut"/>
+        </aop:aspect>
+    </aop:config>
 </beans>

@@ -1,7 +1,10 @@
 package com.zjl.mouse.mouseclient.utils.auth.interceptor;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zjl.mouse.mouseclient.utils.auth.annotation.CheckAuth;
+import com.zjl.mouse.mouseclient.utils.auth.model.ReturnModel;
 import com.zjl.mouse.mouseclient.utils.auth.model.UserModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
@@ -34,7 +37,10 @@ public class AuthorizationInterceptor implements AsyncHandlerInterceptor {
         response.setContentType("text/html;charset=utf-8");
         if(token == null){
             PrintWriter writer = response.getWriter();
-            writer.write("{\"code\":\"10001\",\"message\":\"接口未授权\"}");
+            ReturnModel returnModel = new ReturnModel();
+            returnModel.setCode(HttpStatus.NON_AUTHORITATIVE_INFORMATION.value());
+            returnModel.setMessage("接口未授权");
+            writer.print(JSONObject.toJSONString(returnModel));
             return false;
         }
 
@@ -43,7 +49,10 @@ public class AuthorizationInterceptor implements AsyncHandlerInterceptor {
         boolean checkAuth = "123456".equals(token);
         if(!checkAuth){
             PrintWriter writer = response.getWriter();
-            writer.write("{\"code\":\"10002\",\"message\":\"请求失效\"}");
+            ReturnModel returnModel = new ReturnModel();
+            returnModel.setCode(HttpStatus.UNAUTHORIZED.value());
+            returnModel.setMessage("token已失效");
+            writer.print(JSONObject.toJSONString(returnModel));
             return false;
         }
 

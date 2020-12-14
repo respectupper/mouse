@@ -48,7 +48,6 @@
 
     <import resource="classpath:/config/mouse/rigistry.xml"/>
     <import resource="classpath:/config/mouse/provicer.xml"/>
-    <import resource="classpath:/config/mouse/config.xml"/>
     <import resource="classpath:/config/mouse/traceConfig.xml"/>
     <import resource="classpath:/config/mouse/baseConfig.xml"/>
 

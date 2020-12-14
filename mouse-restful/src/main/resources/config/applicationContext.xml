@@ -9,7 +9,7 @@
         </aop:aspect>
     </aop:config>
     <import resource="classpath:/config/mouse/consumerRegistry.xml"/>
-    <import resource="classpath:/config/mouse/config.xml"/>
+    <import resource="classpath:/config/mouse/restfulConfig.xml"/>
     <import resource="classpath:/config/mouse/dubboClient.xml"/>
     <import resource="classpath:/config/mouse/traceConfig.xml"/>
     <import resource="classpath:/config/mouse/baseConfig.xml"/>
