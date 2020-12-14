@@ -23,21 +23,26 @@ public class TestController {
     @Resource
     private TestService testService;
 
-    @CheckAuth
     @RequestMapping(value = "/getValue", method = RequestMethod.POST)
-    String getValue(@RequestBody TestReqVO testReqVO, @CurrentUserModel UserModel userModel){
+    String getValue(@RequestBody TestReqVO testReqVO){
         logger.info("TestReqVO:{}",JSONObject.toJSONString(testReqVO));
-        logger.info("TestReqVO:{}",JSONObject.toJSONString(userModel));
         TestResVO value = testService.test(testReqVO);
         return JSONObject.toJSONString(value);
+    }
+
+    @CheckAuth
+    @RequestMapping(value = "/getValueNeedAuth", method = RequestMethod.POST)
+    String getValueNeedAuth(@RequestBody TestReqVO testReqVO, @CurrentUserModel UserModel userModel){
+        logger.info("TestReqVO:{}",JSONObject.toJSONString(testReqVO));
+        logger.info("UserModel:{}",JSONObject.toJSONString(userModel));
+        return JSONObject.toJSONString(userModel);
     }
 
     @CheckAuth( isCheck = false)
     @RequestMapping(value = "/getValueNotNeedAuth", method = RequestMethod.POST)
     String getValueNotNeedAuth(@RequestBody TestReqVO testReqVO, @CurrentUserModel UserModel userModel){
         logger.info("TestReqVO:{}",JSONObject.toJSONString(testReqVO));
-        logger.info("TestReqVO:{}",JSONObject.toJSONString(userModel));
-        TestResVO value = testService.test(testReqVO);
-        return JSONObject.toJSONString(value);
+        logger.info("UserModel:{}",JSONObject.toJSONString(userModel));
+        return JSONObject.toJSONString(userModel);
     }
 }
