@@ -1,4 +1,4 @@
-package com.zjl.mouse.mouseclient.utils.restful.base.dto;
+package com.zjl.mouse.mouseclient.utils.restful.base.vo;
 
 public class ResultModel {
     private int result;

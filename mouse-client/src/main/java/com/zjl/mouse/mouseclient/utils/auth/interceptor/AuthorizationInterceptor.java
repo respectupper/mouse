@@ -46,7 +46,8 @@ public class AuthorizationInterceptor implements AsyncHandlerInterceptor {
 
         //查询token信息
         //TODO 这个地方需要改成所保存的redis的token
-        boolean checkAuth = "123456".equals(token);
+//        boolean checkAuth = "123456".equals(token);
+        boolean checkAuth = true;
         if(!checkAuth){
             PrintWriter writer = response.getWriter();
             ReturnModel returnModel = new ReturnModel();

@@ -1,12 +1,10 @@
-package com.zjl.mouse.mouseclient.utils.restful.base.dto;
+package com.zjl.mouse.mouseclient.utils.restful.base.vo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
-import javax.annotation.Resource;
 
 @Controller
 public class WebBaseController {

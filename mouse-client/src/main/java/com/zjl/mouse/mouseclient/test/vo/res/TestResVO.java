@@ -1,8 +1,8 @@
-package com.zjl.mouse.mouseclient.test.req;
+package com.zjl.mouse.mouseclient.test.vo.res;
 
 import java.io.Serializable;
 
-public class TestReqVO implements Serializable {
+public class TestResVO implements Serializable {
 
     /**
      * serialVersionUID
