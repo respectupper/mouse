@@ -6,6 +6,8 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,8 @@ import java.util.Map;
 
 @Component
 public class TokenUtils {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     //设置过期时间
     @Value("${TOKEN.EXPIRE_DATE}")
     private String EXPIRE_DATE;
@@ -43,14 +47,31 @@ public class TokenUtils {
             }
             token = builder.sign(algorithm);
         }catch (Exception e){
-            e.printStackTrace();
+            logger.warn("Token warn : {}",e.getMessage());
         }
         return token;
     }
 
-    public Map<String,String> verify(String token){
+    public boolean check(String token){
         /**
          * @desc   验证token，通过返回true
+         * @params [token]需要校验的串
+         **/
+        Map<String,String> data = new HashMap<String, String>();
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(TOKEN_SECRET);
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT jwt = verifier.verify(token);
+            return true;
+        }catch (Exception e){
+            logger.warn("Token warn : {}",e.getMessage());
+        }
+        return false;
+    }
+
+    public Map<String,String> verify(String token){
+        /**
+         * @desc   验证token，通过返回数据
          * @params [token]需要校验的串
          **/
         Map<String,String> data = new HashMap<String, String>();
@@ -64,8 +85,8 @@ public class TokenUtils {
             }
             return data;
         }catch (Exception e){
-            e.printStackTrace();
-            return  null;
+            logger.warn("Token warn : {}",e.getMessage());
         }
+        return  null;
     }
 }
