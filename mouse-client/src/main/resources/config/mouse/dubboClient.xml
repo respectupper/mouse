@@ -20,7 +20,7 @@
     <!-- RPC调用轨迹拦截器 -->
     <aop:config>
         <aop:aspect ref="wsTraceAdvice">
-            <aop:around method="dubboClientInvoke" pointcut="execution(* com.zjl.mouse.mouseclient.test.service.TestService.*(..)))" />
+            <aop:around method="dubboClientInvoke" pointcut="execution(* com.zjl.mouse.mouseclient.*.service.*.*(..)))" />
         </aop:aspect>
     </aop:config>
 </beans>
