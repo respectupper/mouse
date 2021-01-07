@@ -19,23 +19,23 @@ import java.util.Map;
 public class TokenUtils {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    //设置过期时间
+    /** 设置过期时间 */
     @Value("${TOKEN.EXPIRE_DATE}")
-    private String EXPIRE_DATE;
-    //token秘钥
+    private String expireDate;
+    /** token秘钥 */
     @Value("${TOKEN.TOKEN_SECRET}")
-    private String TOKEN_SECRET;
+    private String tokenSecret;
 
     public String getToken (Map<String,String> dataMap){
 
         String token = null;
         try {
             //过期时间
-            Date date = new Date(System.currentTimeMillis()+Long.parseLong(EXPIRE_DATE));
+            Date date = new Date(System.currentTimeMillis()+Long.parseLong(expireDate));
             //秘钥及加密算法
-            Algorithm algorithm = Algorithm.HMAC256(TOKEN_SECRET);
+            Algorithm algorithm = Algorithm.HMAC256(tokenSecret);
             //设置头部信息
-            Map<String,Object> header = new HashMap<String,Object>();
+            Map<String,Object> header = new HashMap<String,Object>(2);
             header.put("typ","JWT");
             header.put("alg","HmacSHA256");
             //携带username，password信息，生成签名
@@ -52,14 +52,13 @@ public class TokenUtils {
         return token;
     }
 
+    /**
+     * @desc   验证token，通过返回true
+     * @params [token]需要校验的串
+     **/
     public boolean check(String token){
-        /**
-         * @desc   验证token，通过返回true
-         * @params [token]需要校验的串
-         **/
-        Map<String,String> data = new HashMap<String, String>();
         try {
-            Algorithm algorithm = Algorithm.HMAC256(TOKEN_SECRET);
+            Algorithm algorithm = Algorithm.HMAC256(tokenSecret);
             JWTVerifier verifier = JWT.require(algorithm).build();
             DecodedJWT jwt = verifier.verify(token);
             return true;
@@ -69,17 +68,18 @@ public class TokenUtils {
         return false;
     }
 
+
+    /**
+     * @desc   验证token，通过返回数据
+     * @params [token]需要校验的串
+     **/
     public Map<String,String> verify(String token){
-        /**
-         * @desc   验证token，通过返回数据
-         * @params [token]需要校验的串
-         **/
-        Map<String,String> data = new HashMap<String, String>();
         try {
-            Algorithm algorithm = Algorithm.HMAC256(TOKEN_SECRET);
+            Algorithm algorithm = Algorithm.HMAC256(tokenSecret);
             JWTVerifier verifier = JWT.require(algorithm).build();
             DecodedJWT jwt = verifier.verify(token);
             Map<String, Claim> claims = jwt.getClaims();
+            Map<String,String> data = new HashMap<String, String>(claims.keySet().size());
             for (String key : claims.keySet()){
                 data.put(key,claims.get(key).asString());
             }

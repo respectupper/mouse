@@ -9,84 +9,84 @@ import java.util.UUID;
 
 public class TraceContext {
     private static Logger logger = LoggerFactory.getLogger(TraceContext.class);
-    private static final ThreadLocal<LocalTrace> currentTrace = new ThreadLocal();
+    private static final ThreadLocal<LocalTrace> CURRENT_TRACE = new ThreadLocal();
 
     public TraceContext() {
     }
 
     private static void createCurrentTrace() {
-        if (currentTrace.get() == null) {
-            currentTrace.set(new LocalTrace());
+        if (CURRENT_TRACE.get() == null) {
+            CURRENT_TRACE.set(new LocalTrace());
             logger.debug("初始化currentTrace");
         }
 
     }
 
     public static void remove() {
-        currentTrace.remove();
+        CURRENT_TRACE.remove();
     }
 
     public static void initTrace() {
         createCurrentTrace();
-        if (currentTrace.get().getTraceId() == null || currentTrace.get().getTraceId().length() == 0) {
+        if (CURRENT_TRACE.get().getTraceId() == null || CURRENT_TRACE.get().getTraceId().length() == 0) {
             Date now = new Date();
-            LocalTrace localTrace = currentTrace.get();
+            LocalTrace localTrace = CURRENT_TRACE.get();
             localTrace.setTraceId(new SimpleDateFormat("yyyyMMdd").format(now) + "-" + UUID.randomUUID().toString().replace("-", ""));
             localTrace.setRootSpan(true);
             localTrace.setSpanId("0");
-            logger.debug("初始化traceID=" + currentTrace.get().getTraceId());
+            logger.debug("初始化traceID=" + CURRENT_TRACE.get().getTraceId());
         }
 
     }
 
     public static void initTrace(String traceId, String spanId) {
         createCurrentTrace();
-        currentTrace.get().setTraceId(traceId);
-        currentTrace.get().setSpanId(spanId);
+        CURRENT_TRACE.get().setTraceId(traceId);
+        CURRENT_TRACE.get().setSpanId(spanId);
     }
 
     public static String getTraceId() {
-        return currentTrace.get() == null ? null : currentTrace.get().getTraceId();
+        return CURRENT_TRACE.get() == null ? null : CURRENT_TRACE.get().getTraceId();
     }
 
     public static String getSpanId() {
-        return currentTrace.get() == null ? null : currentTrace.get().getSpanId();
+        return CURRENT_TRACE.get() == null ? null : CURRENT_TRACE.get().getSpanId();
     }
 
     public static String getTag(String key) {
-        return currentTrace.get() == null ? null : currentTrace.get().getTags().get(key);
+        return CURRENT_TRACE.get() == null ? null : CURRENT_TRACE.get().getTags().get(key);
     }
 
     public static void setTag(String key, String value) {
-        currentTrace.get().getTags().put(key, value);
+        CURRENT_TRACE.get().getTags().put(key, value);
     }
 
     public static boolean isRootSpan() {
-        return currentTrace.get().isRootSpan();
+        return CURRENT_TRACE.get().isRootSpan();
     }
 
     public static String initCurrSubSpanId() {
-        if (currentTrace.get() == null) {
+        if (CURRENT_TRACE.get() == null) {
             return null;
         } else {
-            String subSpanId = currentTrace.get().getSpanId() + "." + currentTrace.get().getCurrSubSpanNum();
-            currentTrace.get().setCurrSubSpanId(subSpanId);
-            currentTrace.get().setCurrSubSpanNum(currentTrace.get().getCurrSubSpanNum() + 1);
-            return currentTrace.get().getCurrSubSpanId();
+            String subSpanId = CURRENT_TRACE.get().getSpanId() + "." + CURRENT_TRACE.get().getCurrSubSpanNum();
+            CURRENT_TRACE.get().setCurrSubSpanId(subSpanId);
+            CURRENT_TRACE.get().setCurrSubSpanNum(CURRENT_TRACE.get().getCurrSubSpanNum() + 1);
+            return CURRENT_TRACE.get().getCurrSubSpanId();
         }
     }
 
     public static String getCurrSubSpanId() {
-        return currentTrace.get() == null ? null : currentTrace.get().getCurrSubSpanId();
+        return CURRENT_TRACE.get() == null ? null : CURRENT_TRACE.get().getCurrSubSpanId();
     }
 
     public static int getCallHierarchy() {
-        return currentTrace.get() == null ? 0 : currentTrace.get().getCallHierarchy();
+        return CURRENT_TRACE.get() == null ? 0 : CURRENT_TRACE.get().getCallHierarchy();
     }
 
     public static void increaseCallHierarch(int hierarch) {
-        if (currentTrace.get() != null) {
-            currentTrace.get().setCallHierarchy(currentTrace.get().getCallHierarchy() + hierarch);
+        if (CURRENT_TRACE.get() != null) {
+            CURRENT_TRACE.get().setCallHierarchy(CURRENT_TRACE.get().getCallHierarchy() + hierarch);
         }
     }
 

@@ -33,7 +33,8 @@ public class TestController extends WebBaseController {
     ResponseEntity<ResultModel> getValueNeedAuth(@RequestBody TestReqVO testReqVO, @CurrentUserModel UserModel userModel){
         logger.info("TestReqVO:{}",JSONObject.toJSONString(testReqVO));
         logger.info("UserModel:{}",JSONObject.toJSONString(userModel));
-        return responseEntity(userModel);
+        TestResVO test = testService.test(testReqVO);
+        return responseEntity(test);
     }
 
     @CheckAuth( isCheck = false)

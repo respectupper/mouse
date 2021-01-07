@@ -5,7 +5,7 @@ public class TraceRecordDto {
     public String recordType;
     public String recordId;
     public String recordInfo;
-    /*---------------以上继承------------------*/
+    /**---------------以上继承------------------*/
     public String protocol;
     public String clientIp;
     public String clientGroup;

@@ -12,6 +12,7 @@ public class RpcPatternLayout extends PatternLayout {
         super(pattern);
     }
 
+    @Override
     public PatternParser createPatternParser(String pattern) {
         return new RpcPatternParser(pattern == null ? "%m%n" : pattern);
     }

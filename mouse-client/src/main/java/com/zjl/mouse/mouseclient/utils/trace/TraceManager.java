@@ -49,7 +49,7 @@ public class TraceManager {
     public void record(String level, String type, String protocol, String clientIp, String clientGroup, String serverName, long cost, String info, String referenceId) {
         if (TraceContext.getTraceId() != null) {
             String spanId;
-            if (!type.equals("Client") && !type.equals("Producer")) {
+            if (!"Client".equals(type) && !"Producer".equals(type)) {
                 spanId = TraceContext.getSpanId();
             } else {
                 spanId = TraceContext.getCurrSubSpanId() == null ? TraceContext.getSpanId() : TraceContext.getCurrSubSpanId();

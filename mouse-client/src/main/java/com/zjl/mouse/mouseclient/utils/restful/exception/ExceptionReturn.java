@@ -33,7 +33,7 @@ public class ExceptionReturn {
         try{
             return proceedingJoinPoint.proceed();
         }catch (Exception e){
-            HashMap map = new HashMap();
+            HashMap map = new HashMap(2);
             map.put("code","500");
             map.put("message","系统异常");
             return new ResponseEntity(map, HttpStatus.INTERNAL_SERVER_ERROR);

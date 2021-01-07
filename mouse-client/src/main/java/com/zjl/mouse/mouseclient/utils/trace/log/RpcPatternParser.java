@@ -11,6 +11,7 @@ public class RpcPatternParser extends PatternParser {
         super(pattern);
     }
 
+    @Override
     public void finalizeConverter(char c) {
         if (c == '#') {
             String exs = super.extractOption();
@@ -31,6 +32,7 @@ public class RpcPatternParser extends PatternParser {
             super(formattingInfo);
         }
 
+        @Override
         public String convert(LoggingEvent event) {
             return TraceContext.getTraceId() != null ? TraceContext.getTraceId() + "." + TraceContext.getSpanId() : "";
         }
