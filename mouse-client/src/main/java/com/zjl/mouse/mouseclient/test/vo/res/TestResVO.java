@@ -1,4 +1,4 @@
-package com.zjl.mouse.mouseclient.test.res;
+package com.zjl.mouse.mouseclient.test.vo.res;
 
 import java.io.Serializable;
 import java.util.List;

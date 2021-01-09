@@ -3,15 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!--日志切面-->
     <aop:config>
-        <aop:pointcut id="controllerLog" expression="execution(* com.zjl.mouse.*.controller.*.*(..)) &amp;&amp; !execution(* com.zjl.mouse.*.controller.*.upload*(..))"/>
-        <aop:aspect id="controllerLogAspect" ref="logInterceptor">
-            <aop:around method="around" pointcut-ref="controllerLog"/>
+        <aop:aspect ref="restfulTraceAdvice">
+            <aop:around method="around" pointcut="execution(* com.zjl.mouse.mouserestful..*.controller.*.*(..)) and @annotation(org.springframework.web.bind.annotation.RequestMapping)" />
         </aop:aspect>
     </aop:config>
-
     <import resource="classpath:/config/mouse/consumerRegistry.xml"/>
+    <import resource="classpath:/config/mouse/restfulConfig.xml"/>
     <import resource="classpath:/config/mouse/dubboClient.xml"/>
-    <import resource="classpath:/config/mouse/config.xml"/>
+    <import resource="classpath:/config/mouse/traceConfig.xml"/>
+    <import resource="classpath:/config/mouse/baseConfig.xml"/>
+    <import resource="classpath:/config/mouse/authConfig.xml"/>
 </beans>

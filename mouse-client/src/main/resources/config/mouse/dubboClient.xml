@@ -16,5 +16,11 @@
        default-lazy-init="true">
 
     <!-- 生成远程服务代理 -->
-    <dubbo:reference id="testServiceClient" interface="com.zjl.mouse.mouseclient.test.service.TestService" version="2.0.0" registry="${mouse.registry}" />
+    <dubbo:reference id="testServiceClient" interface="com.zjl.mouse.mouseclient.test.service.TestService" version="2.0.0" registry="${dubbo.registry}" />
+    <!-- RPC调用轨迹拦截器 -->
+    <aop:config>
+        <aop:aspect ref="wsTraceAdvice">
+            <aop:around method="dubboClientInvoke" pointcut="execution(* com.zjl.mouse.mouseclient.*.service.*.*(..)))" />
+        </aop:aspect>
+    </aop:config>
 </beans>

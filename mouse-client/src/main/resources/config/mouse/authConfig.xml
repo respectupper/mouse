@@ -16,7 +16,6 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd
        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
        default-lazy-init="true">
-    <!--        日志切面-->
-    <bean class="com.zjl.mouse.mouseclient.utils.LogInterceptor" id="logInterceptor"/>
 
+    <context:component-scan base-package="com.zjl.mouse.mouseclient.utils.auth"/>
 </beans>
