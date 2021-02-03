@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.Map;
 
+/**
+ * @author zhujinglei
+ */
 @Component
 public class AuthorizationInterceptor implements AsyncHandlerInterceptor {
 

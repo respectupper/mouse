@@ -1,5 +1,8 @@
 package com.zjl.mouse.mouseclient.utils.restful.base.vo;
 
+/**
+ * @author zhujinglei
+ */
 public class ResultModel {
     private int result;
     private String message = "";

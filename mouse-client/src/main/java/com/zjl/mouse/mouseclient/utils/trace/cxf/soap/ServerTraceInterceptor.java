@@ -16,6 +16,9 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+/**
+ * @author zhujinglei
+ */
 public class ServerTraceInterceptor extends AbstractPhaseInterceptor<SoapMessage> {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -23,6 +26,7 @@ public class ServerTraceInterceptor extends AbstractPhaseInterceptor<SoapMessage
         super("pre-invoke");
     }
 
+    @Override
     public void handleMessage(SoapMessage message) throws Fault {
         QName qname = new QName("RpcClientRequest");
         Header header = message.getHeader(qname);

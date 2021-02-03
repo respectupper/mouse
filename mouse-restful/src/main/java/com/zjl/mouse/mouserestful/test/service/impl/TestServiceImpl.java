@@ -15,6 +15,9 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author zhujinglei
+ */
 @Service
 public class TestServiceImpl implements TestService {
     @Resource
@@ -35,7 +38,7 @@ public class TestServiceImpl implements TestService {
     @Override
     public TestTokenResVO getToken(TestTokenReqVO testTokenReqVO) {
         TestTokenResVO testTokenResVO = new TestTokenResVO();
-        Map<String, String> stringStringMap = new HashMap<>();
+        Map<String, String> stringStringMap = new HashMap<>(3);
         stringStringMap.put("mobile",testTokenReqVO.getMobile());
         stringStringMap.put("password",testTokenReqVO.getPassword());
         stringStringMap.put("username",testTokenReqVO.getUsername());

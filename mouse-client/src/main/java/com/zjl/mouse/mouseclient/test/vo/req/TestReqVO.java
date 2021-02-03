@@ -2,6 +2,9 @@ package com.zjl.mouse.mouseclient.test.vo.req;
 
 import java.io.Serializable;
 
+/**
+ * @author zhujinglei
+ */
 public class TestReqVO implements Serializable {
 
     /**
@@ -17,5 +20,12 @@ public class TestReqVO implements Serializable {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "TestReqVO{" +
+                "value='" + value + '\'' +
+                '}';
     }
 }

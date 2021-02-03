@@ -1,5 +1,8 @@
 package com.zjl.mouse.mouseclient.utils.trace.config;
 
+/**
+ * @author zhujinglei
+ */
 public class RpcConfig {
     private String serverGroup;
 

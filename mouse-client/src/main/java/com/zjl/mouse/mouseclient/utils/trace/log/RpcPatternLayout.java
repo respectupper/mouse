@@ -3,6 +3,9 @@ package com.zjl.mouse.mouseclient.utils.trace.log;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.helpers.PatternParser;
 
+/**
+ * @author zhujinglei
+ */
 public class RpcPatternLayout extends PatternLayout {
     public RpcPatternLayout() {
         this("%m%n");

@@ -1,6 +1,7 @@
 package com.zjl.mouse.mouseclient.utils.trace;
 
 import com.alibaba.fastjson.JSON;
+import com.zjl.mouse.mouseclient.test.enums.ENUM_YES_NO_CODE;
 import com.zjl.mouse.mouseclient.utils.trace.annotation.RpcService;
 import com.zjl.mouse.mouseclient.utils.trace.annotation.RpcTraceLog;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,6 +12,9 @@ import org.slf4j.LoggerFactory;
 import javax.jws.WebService;
 import java.lang.reflect.Method;
 
+/**
+ * @author zhujinglei
+ */
 public class TraceAdvice {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private TraceManager traceManager;
@@ -130,16 +134,16 @@ public class TraceAdvice {
         }
 
         if (traceLog != null) {
-            if (!"yes".equalsIgnoreCase(traceLog.printDetail())) {
+            if (!ENUM_YES_NO_CODE.YES.getValueLower().equalsIgnoreCase(traceLog.printDetail())) {
                 printLogConfig = "00";
             } else {
-                if (!"yes".equalsIgnoreCase(traceLog.printInputDetail())) {
+                if (!ENUM_YES_NO_CODE.YES.getValueLower().equalsIgnoreCase(traceLog.printInputDetail())) {
                     printLogConfig = "0";
                 } else {
                     printLogConfig = "1";
                 }
 
-                if (!"yes".equalsIgnoreCase(traceLog.printOutputDetail())) {
+                if (!ENUM_YES_NO_CODE.YES.getValueLower().equalsIgnoreCase(traceLog.printOutputDetail())) {
                     printLogConfig = printLogConfig + "0";
                 } else {
                     printLogConfig = printLogConfig + "1";

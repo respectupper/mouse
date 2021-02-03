@@ -2,6 +2,9 @@ package com.zjl.mouse.mouserestful.test.vo.res;
 
 import java.util.Map;
 
+/**
+ * @author zhujinglei
+ */
 public class TestTokenResVO {
     private String token;
     Map<String, String> dataMap;
@@ -20,5 +23,13 @@ public class TestTokenResVO {
 
     public void setDataMap(Map<String, String> dataMap) {
         this.dataMap = dataMap;
+    }
+
+    @Override
+    public String toString() {
+        return "TestTokenResVO{" +
+                "token='" + token + '\'' +
+                ", dataMap=" + dataMap +
+                '}';
     }
 }

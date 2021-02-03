@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+/**
+ * @author zhujinglei
+ */
 @RestController
 public class TestController extends WebBaseController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -70,9 +73,4 @@ public class TestController extends WebBaseController {
         return responseEntity(testTokenResVO);
     }
 
-    @RequestMapping(value = "/getListValue", method = RequestMethod.POST)
-    String getListValue(@RequestBody TestReqVO testReqVO){
-        TestResVO value = testService.getListValue(testReqVO);
-        return JSONObject.toJSONString(value);
-    }
 }

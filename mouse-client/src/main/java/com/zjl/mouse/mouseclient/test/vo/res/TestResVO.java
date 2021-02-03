@@ -1,8 +1,10 @@
 package com.zjl.mouse.mouseclient.test.vo.res;
 
 import java.io.Serializable;
-import java.util.List;
 
+/**
+ * @author zhujinglei
+ */
 public class TestResVO implements Serializable {
 
     /**
@@ -11,8 +13,6 @@ public class TestResVO implements Serializable {
     private static final long serialVersionUID = 1L;
     /** 测试出参 */
     private String value;
-    /** 测试出参 */
-    private List<OssVo> ossVoList;
 
     public String getValue() {
         return value;
@@ -22,11 +22,10 @@ public class TestResVO implements Serializable {
         this.value = value;
     }
 
-    public List<OssVo> getOssVoList() {
-        return ossVoList;
-    }
-
-    public void setOssVoList(List<OssVo> ossVoList) {
-        this.ossVoList = ossVoList;
+    @Override
+    public String toString() {
+        return "TestResVO{" +
+                "value='" + value + '\'' +
+                '}';
     }
 }

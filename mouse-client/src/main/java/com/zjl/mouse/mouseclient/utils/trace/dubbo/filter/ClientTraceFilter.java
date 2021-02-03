@@ -15,6 +15,9 @@ import org.apache.dubbo.rpc.Result;
 import org.apache.dubbo.rpc.RpcContext;
 import org.apache.dubbo.rpc.RpcException;
 
+/**
+ * @author zhujinglei
+ */
 @Activate
 public class ClientTraceFilter implements Filter {
     private static RpcConfig rpcConfig;
@@ -22,6 +25,7 @@ public class ClientTraceFilter implements Filter {
     public ClientTraceFilter() {
     }
 
+    @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         if (rpcConfig == null) {
             rpcConfig = (RpcConfig) SpringContext.getBean("rpcConfig");

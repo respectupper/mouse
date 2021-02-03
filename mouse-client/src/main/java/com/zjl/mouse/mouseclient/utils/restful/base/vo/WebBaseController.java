@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
+/**
+ * @author zhujinglei
+ */
 @Controller
 public class WebBaseController {
     /** 日志类 */

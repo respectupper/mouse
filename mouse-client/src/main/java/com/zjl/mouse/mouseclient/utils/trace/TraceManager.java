@@ -1,6 +1,11 @@
 package com.zjl.mouse.mouseclient.utils.trace;
 
+/**
+ * @author zhujinglei
+ */
 public class TraceManager {
+    private final String client = "Client";
+    private final String producer = "Producer";
     private TraceRecord traceRecord;
 
     public TraceManager() {
@@ -49,13 +54,13 @@ public class TraceManager {
     public void record(String level, String type, String protocol, String clientIp, String clientGroup, String serverName, long cost, String info, String referenceId) {
         if (TraceContext.getTraceId() != null) {
             String spanId;
-            if (!"Client".equals(type) && !"Producer".equals(type)) {
+            if (!client.equals(type) && !producer.equals(type)) {
                 spanId = TraceContext.getSpanId();
             } else {
                 spanId = TraceContext.getCurrSubSpanId() == null ? TraceContext.getSpanId() : TraceContext.getCurrSubSpanId();
             }
 
-            TraceRecordDto recordDto = new TraceRecordDto(level, type, protocol, clientIp, clientGroup, serverName, TraceContext.getTraceId(), spanId, cost, info, referenceId);
+            TraceRecordDTO recordDto = new TraceRecordDTO(level, type, protocol, clientIp, clientGroup, serverName, TraceContext.getTraceId(), spanId, cost, info, referenceId);
             this.traceRecord.record(recordDto);
         }
     }

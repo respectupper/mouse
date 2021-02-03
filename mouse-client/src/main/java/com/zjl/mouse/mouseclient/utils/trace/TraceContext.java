@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * @author zhujinglei
+ */
 public class TraceContext {
     private static Logger logger = LoggerFactory.getLogger(TraceContext.class);
     private static final ThreadLocal<LocalTrace> CURRENT_TRACE = new ThreadLocal();

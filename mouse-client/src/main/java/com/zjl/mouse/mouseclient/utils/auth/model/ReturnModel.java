@@ -1,6 +1,8 @@
 package com.zjl.mouse.mouseclient.utils.auth.model;
 
-
+/**
+ * @author zhujinglei
+ */
 public class ReturnModel {
     private int code;
     private String message;

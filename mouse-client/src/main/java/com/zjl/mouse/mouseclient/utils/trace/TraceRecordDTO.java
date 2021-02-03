@@ -1,6 +1,9 @@
 package com.zjl.mouse.mouseclient.utils.trace;
 
-public class TraceRecordDto {
+/**
+ * @author zhujinglei
+ */
+public class TraceRecordDTO {
     public String level;
     public String recordType;
     public String recordId;
@@ -14,7 +17,7 @@ public class TraceRecordDto {
     public long cost;
     public String referenceId;
 
-    public TraceRecordDto(String level, String recordType, String protocol, String clientIp, String clientGroup, String serverName, String recordId, String spanId, long cost, String recordInfo, String referenceId) {
+    public TraceRecordDTO(String level, String recordType, String protocol, String clientIp, String clientGroup, String serverName, String recordId, String spanId, long cost, String recordInfo, String referenceId) {
         this.level = level;
         this.recordType = recordType;
         this.protocol = protocol;
@@ -114,5 +117,22 @@ public class TraceRecordDto {
 
     public void setRecordInfo(String recordInfo) {
         this.recordInfo = recordInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "TraceRecordDTO{" +
+                "level='" + level + '\'' +
+                ", recordType='" + recordType + '\'' +
+                ", recordId='" + recordId + '\'' +
+                ", recordInfo='" + recordInfo + '\'' +
+                ", protocol='" + protocol + '\'' +
+                ", clientIp='" + clientIp + '\'' +
+                ", clientGroup='" + clientGroup + '\'' +
+                ", serverName='" + serverName + '\'' +
+                ", spanId='" + spanId + '\'' +
+                ", cost=" + cost +
+                ", referenceId='" + referenceId + '\'' +
+                '}';
     }
 }

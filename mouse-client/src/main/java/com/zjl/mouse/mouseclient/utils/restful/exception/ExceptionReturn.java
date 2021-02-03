@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 
 /**
+ * @author zhujinglei
  * 校验token
  */
 public class ExceptionReturn {

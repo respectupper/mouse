@@ -10,6 +10,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author zhujinglei
+ */
 public class RestfulTraceAdvice {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private TraceManager traceManager;

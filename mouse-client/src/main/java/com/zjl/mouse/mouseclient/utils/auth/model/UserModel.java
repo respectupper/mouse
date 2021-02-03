@@ -1,6 +1,7 @@
 package com.zjl.mouse.mouseclient.utils.auth.model;
 
 /**
+ * @author zhujinglei
  * 该类是请求鉴权后拿到的用户数据（字段可扩展）
  */
 public class UserModel {

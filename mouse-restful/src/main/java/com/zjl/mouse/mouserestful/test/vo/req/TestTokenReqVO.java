@@ -1,5 +1,8 @@
 package com.zjl.mouse.mouserestful.test.vo.req;
 
+/**
+ * @author zhujinglei
+ */
 public class TestTokenReqVO {
     private String token;
     private String mobile;
@@ -36,5 +39,15 @@ public class TestTokenReqVO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "TestTokenReqVO{" +
+                "token='" + token + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

@@ -20,6 +20,9 @@ import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * @author zhujinglei
+ */
 public class ClientTraceInterceptor extends AbstractSoapInterceptor {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     private RpcConfig rpcConfig;
@@ -37,6 +40,7 @@ public class ClientTraceInterceptor extends AbstractSoapInterceptor {
         this.addAfter(SoapPreProtocolOutInterceptor.class.getName());
     }
 
+    @Override
     public void handleMessage(SoapMessage message) throws Fault {
         DocumentBuilder builder = null;
 

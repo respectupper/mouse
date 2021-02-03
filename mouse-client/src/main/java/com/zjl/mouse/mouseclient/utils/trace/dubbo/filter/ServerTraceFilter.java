@@ -11,11 +11,15 @@ import org.apache.dubbo.rpc.Result;
 import org.apache.dubbo.rpc.RpcContext;
 import org.apache.dubbo.rpc.RpcException;
 
+/**
+ * @author zhujinglei
+ */
 @Activate
 public class ServerTraceFilter implements Filter {
     public ServerTraceFilter() {
     }
 
+    @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         Method method;
         try {

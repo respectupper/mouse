@@ -10,6 +10,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
+/**
+ * @author zhujinglei
+ */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
@@ -17,10 +20,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Autowired
     private LoginUserHandlerMethodArgumentResolver loginUserHandlerMethodArgumentResolver;
 
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authorizationInterceptor).addPathPatterns("/**");
     }
 
+    @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(loginUserHandlerMethodArgumentResolver);
     }

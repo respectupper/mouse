@@ -3,6 +3,9 @@ package com.zjl.mouse.mouseclient.utils.trace;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author zhujinglei
+ */
 public class LocalTrace {
     private String traceId;
     private String spanId;
