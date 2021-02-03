@@ -69,4 +69,10 @@ public class TestController extends WebBaseController {
         TestTokenResVO testTokenResVO = testService.checkToken(testTokenReqVO,userModel);
         return responseEntity(testTokenResVO);
     }
+
+    @RequestMapping(value = "/getListValue", method = RequestMethod.POST)
+    String getListValue(@RequestBody TestReqVO testReqVO){
+        TestResVO value = testService.getListValue(testReqVO);
+        return JSONObject.toJSONString(value);
+    }
 }
