@@ -14,4 +14,5 @@
     <import resource="classpath:/config/mouse/traceConfig.xml"/>
     <import resource="classpath:/config/mouse/baseConfig.xml"/>
     <import resource="classpath:/config/mouse/authConfig.xml"/>
+    <import resource="classpath:/config/mouse/redisConfig.xml"/>
 </beans>

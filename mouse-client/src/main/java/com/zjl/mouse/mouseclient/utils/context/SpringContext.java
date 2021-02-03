@@ -9,6 +9,7 @@ public class SpringContext implements ApplicationContextAware {
 
 	private static ApplicationContext context;
 
+	@Override
 	public void setApplicationContext(ApplicationContext applicationcontext) throws BeansException {
 		SpringContext.context = applicationcontext;
 	}

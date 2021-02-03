@@ -14,10 +14,12 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 @Component
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
 
+    @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
         return methodParameter.getParameterType().isAssignableFrom(UserModel.class) && methodParameter.hasParameterAnnotation(CurrentUserModel.class);
     }
 
+    @Override
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
         //获取登陆用户信息
         Object object = nativeWebRequest.getAttribute(AuthorizationInterceptor.USER_INFO, RequestAttributes.SCOPE_REQUEST);

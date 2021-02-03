@@ -4,6 +4,8 @@ package com.zjl.mouse.mouseclient.utils.auth.model;
  * 该类是请求鉴权后拿到的用户数据（字段可扩展）
  */
 public class UserModel {
+    private Integer uid;
+
     private String token;
 
     private String mobile;
@@ -11,6 +13,14 @@ public class UserModel {
     private String username;
 
     private String password;
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
 
     public String getToken() {
         return token;

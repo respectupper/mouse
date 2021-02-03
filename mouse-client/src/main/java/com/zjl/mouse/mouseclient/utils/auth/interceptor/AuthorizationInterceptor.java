@@ -25,6 +25,7 @@ public class AuthorizationInterceptor implements AsyncHandlerInterceptor {
     @Resource
     private TokenUtils tokenUtils;
 
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         CheckAuth annotation;
         if(handler instanceof HandlerMethod){
@@ -57,7 +58,7 @@ public class AuthorizationInterceptor implements AsyncHandlerInterceptor {
             PrintWriter writer = response.getWriter();
             ReturnModel returnModel = new ReturnModel();
             returnModel.setCode(HttpStatus.UNAUTHORIZED.value());
-            returnModel.setMessage("token已失效");
+            returnModel.setMessage("token无效");
             writer.print(JSONObject.toJSONString(returnModel));
             return false;
         }

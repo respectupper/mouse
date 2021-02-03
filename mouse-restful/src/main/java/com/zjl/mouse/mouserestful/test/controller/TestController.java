@@ -65,9 +65,8 @@ public class TestController extends WebBaseController {
     @CheckAuth
     @RequestMapping(value = "/checkToken", method = RequestMethod.POST)
     ResponseEntity<ResultModel> checkToken(@RequestBody TestTokenReqVO testTokenReqVO,@CurrentUserModel UserModel userModel){
-        testTokenReqVO.setToken(userModel.getToken());
         logger.info("TestTokenReqVO:{}",JSONObject.toJSONString(testTokenReqVO));
-        TestTokenResVO testTokenResVO = testService.checkToken(testTokenReqVO);
+        TestTokenResVO testTokenResVO = testService.checkToken(testTokenReqVO,userModel);
         return responseEntity(testTokenResVO);
     }
 }
