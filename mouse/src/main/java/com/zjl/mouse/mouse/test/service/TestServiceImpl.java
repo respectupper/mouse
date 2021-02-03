@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+/**
+ * @author zhujinglei
+ */
 @Service
 public class TestServiceImpl implements TestService {
 

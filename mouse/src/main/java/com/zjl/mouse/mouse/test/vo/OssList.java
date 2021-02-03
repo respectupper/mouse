@@ -2,6 +2,9 @@ package com.zjl.mouse.mouse.test.vo;
 
 import java.util.Date;
 
+/**
+ * @author zhujinglei
+ */
 public class OssList {
     private Long fId;
 
