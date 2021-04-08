@@ -33,9 +33,9 @@ public class TraceAdvice {
     public Object serviceInvoke(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         Class<?> clazz = joinPoint.getSignature().getDeclaringType();
-        if (clazz.getAnnotation(RpcService.class) == null && clazz.getAnnotation(WebService.class) == null) {
-            return joinPoint.proceed();
-        } else {
+//        if (clazz.getAnnotation(RpcService.class) == null && clazz.getAnnotation(WebService.class) == null) {
+//            return joinPoint.proceed();
+//        } else {
             String serviceName = joinPoint.getSignature().getDeclaringTypeName();
             String methodName = joinPoint.getSignature().getName();
             String request = "null";
@@ -74,7 +74,7 @@ public class TraceAdvice {
 
                 return var15;
             }
-        }
+//        }
     }
 
     public Object clientInvoke(ProceedingJoinPoint joinPoint) throws Throwable {

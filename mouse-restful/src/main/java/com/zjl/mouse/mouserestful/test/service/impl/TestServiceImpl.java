@@ -43,9 +43,6 @@ public class TestServiceImpl implements TestService {
         stringStringMap.put("password",testTokenReqVO.getPassword());
         stringStringMap.put("username",testTokenReqVO.getUsername());
         String token = tokenUtils.getToken(stringStringMap);
-        ValueOperations<String, Object> redisString = redisTemplate.opsForValue();
-        // SET key value: 设置指定 key 的值
-        redisString.set("com.zjl.mouse.token.", token);
         testTokenResVO.setToken(token);
         return testTokenResVO;
     }
