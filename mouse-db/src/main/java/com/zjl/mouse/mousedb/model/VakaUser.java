@@ -7,7 +7,7 @@ public class VakaUser {
 
     private String petName;
 
-    private String phone;
+    private String mobile;
 
     private String password;
 
@@ -45,12 +45,12 @@ public class VakaUser {
         this.petName = petName == null ? null : petName.trim();
     }
 
-    public String getPhone() {
-        return phone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+    public void setMobile(String mobile) {
+        this.mobile = mobile == null ? null : mobile.trim();
     }
 
     public String getPassword() {
