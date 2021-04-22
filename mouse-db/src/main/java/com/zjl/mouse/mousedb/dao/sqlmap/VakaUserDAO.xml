@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjl.mouse.mousedb.dao.VakaUserDAO">
+  <resultMap id="BaseResultMap" type="com.zjl.mouse.mousedb.model.VakaUser">
+    <id column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="pet_name" jdbcType="VARCHAR" property="petName" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="personalized_signature" jdbcType="VARCHAR" property="personalizedSignature" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="head_portrait_url" jdbcType="VARCHAR" property="headPortraitUrl" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="experience" jdbcType="INTEGER" property="experience" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="create_table" jdbcType="TIMESTAMP" property="createTable" />
+    <result column="update_table" jdbcType="TIMESTAMP" property="updateTable" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    `uid`, pet_name, mobile, `password`, personalized_signature, email, head_portrait_url, 
+    gender, experience, birthday, create_table, update_table, is_delete
+  </sql>
+  <select id="selectByExample" parameterType="com.zjl.mouse.mousedb.model.VakaUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vaka_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vaka_user
+    where `uid` = #{uid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="Long">
+    delete from vaka_user
+    where `uid` = #{uid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zjl.mouse.mousedb.model.VakaUserExample">
+    delete from vaka_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zjl.mouse.mousedb.model.VakaUser">
+    insert into vaka_user (`uid`, pet_name, mobile, 
+      `password`, personalized_signature, email, 
+      head_portrait_url, gender, experience, 
+      birthday, create_table, update_table, 
+      is_delete)
+    values (#{uid,jdbcType=VARCHAR}, #{petName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{personalizedSignature,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{headPortraitUrl,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{experience,jdbcType=INTEGER}, 
+      #{birthday,jdbcType=TIMESTAMP}, #{createTable,jdbcType=TIMESTAMP}, #{updateTable,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjl.mouse.mousedb.model.VakaUser">
+    insert into vaka_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        `uid`,
+      </if>
+      <if test="petName != null">
+        pet_name,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="personalizedSignature != null">
+        personalized_signature,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="headPortraitUrl != null">
+        head_portrait_url,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="createTable != null">
+        create_table,
+      </if>
+      <if test="updateTable != null">
+        update_table,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="petName != null">
+        #{petName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="personalizedSignature != null">
+        #{personalizedSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortraitUrl != null">
+        #{headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTable != null">
+        #{createTable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTable != null">
+        #{updateTable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zjl.mouse.mousedb.model.VakaUserExample" resultType="java.lang.Long">
+    select count(*) from vaka_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update vaka_user
+    <set>
+      <if test="record.uid != null">
+        `uid` = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.petName != null">
+        pet_name = #{record.petName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        `password` = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personalizedSignature != null">
+        personalized_signature = #{record.personalizedSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headPortraitUrl != null">
+        head_portrait_url = #{record.headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience != null">
+        experience = #{record.experience,jdbcType=INTEGER},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTable != null">
+        create_table = #{record.createTable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTable != null">
+        update_table = #{record.updateTable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update vaka_user
+    set `uid` = #{record.uid,jdbcType=VARCHAR},
+      pet_name = #{record.petName,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      `password` = #{record.password,jdbcType=VARCHAR},
+      personalized_signature = #{record.personalizedSignature,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      head_portrait_url = #{record.headPortraitUrl,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=VARCHAR},
+      experience = #{record.experience,jdbcType=INTEGER},
+      birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      create_table = #{record.createTable,jdbcType=TIMESTAMP},
+      update_table = #{record.updateTable,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjl.mouse.mousedb.model.VakaUser">
+    update vaka_user
+    <set>
+      <if test="petName != null">
+        pet_name = #{petName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="personalizedSignature != null">
+        personalized_signature = #{personalizedSignature,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortraitUrl != null">
+        head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        experience = #{experience,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTable != null">
+        create_table = #{createTable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTable != null">
+        update_table = #{updateTable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `uid` = #{uid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjl.mouse.mousedb.model.VakaUser">
+    update vaka_user
+    set pet_name = #{petName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      personalized_signature = #{personalizedSignature,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      head_portrait_url = #{headPortraitUrl,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      create_table = #{createTable,jdbcType=TIMESTAMP},
+      update_table = #{updateTable,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=VARCHAR}
+    where `uid` = #{uid,jdbcType=VARCHAR}
+  </update>
+</mapper>

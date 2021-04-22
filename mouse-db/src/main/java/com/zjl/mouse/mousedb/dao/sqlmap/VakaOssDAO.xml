@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjl.mouse.mousedb.dao.VakaOssDAO">
+  <resultMap id="BaseResultMap" type="com.zjl.mouse.mousedb.model.VakaOss">
+    <id column="F_ID" jdbcType="INTEGER" property="fId" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="fName" />
+    <result column="F_URL" jdbcType="VARCHAR" property="fUrl" />
+    <result column="F_BUCKET" jdbcType="VARCHAR" property="fBucket" />
+    <result column="IS_FOLDER" jdbcType="VARCHAR" property="isFolder" />
+    <result column="IS_DELETE" jdbcType="VARCHAR" property="isDelete" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="SERVER_PATH" jdbcType="VARCHAR" property="serverPath" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    F_ID, F_NAME, F_URL, F_BUCKET, IS_FOLDER, IS_DELETE, CREATE_DATE, CREATE_USER, SERVER_PATH
+  </sql>
+  <select id="selectByExample" parameterType="com.zjl.mouse.mousedb.model.VakaOssExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vaka_oss
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vaka_oss
+    where F_ID = #{fId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="Long">
+    delete from vaka_oss
+    where F_ID = #{fId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zjl.mouse.mousedb.model.VakaOssExample">
+    delete from vaka_oss
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zjl.mouse.mousedb.model.VakaOss">
+    insert into vaka_oss (F_ID, F_NAME, F_URL, 
+      F_BUCKET, IS_FOLDER, IS_DELETE, 
+      CREATE_DATE, CREATE_USER, SERVER_PATH
+      )
+    values (#{fId,jdbcType=INTEGER}, #{fName,jdbcType=VARCHAR}, #{fUrl,jdbcType=VARCHAR}, 
+      #{fBucket,jdbcType=VARCHAR}, #{isFolder,jdbcType=VARCHAR}, #{isDelete,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{serverPath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zjl.mouse.mousedb.model.VakaOss">
+    insert into vaka_oss
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        F_ID,
+      </if>
+      <if test="fName != null">
+        F_NAME,
+      </if>
+      <if test="fUrl != null">
+        F_URL,
+      </if>
+      <if test="fBucket != null">
+        F_BUCKET,
+      </if>
+      <if test="isFolder != null">
+        IS_FOLDER,
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="serverPath != null">
+        SERVER_PATH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fId != null">
+        #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="fName != null">
+        #{fName,jdbcType=VARCHAR},
+      </if>
+      <if test="fUrl != null">
+        #{fUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fBucket != null">
+        #{fBucket,jdbcType=VARCHAR},
+      </if>
+      <if test="isFolder != null">
+        #{isFolder,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="serverPath != null">
+        #{serverPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zjl.mouse.mousedb.model.VakaOssExample" resultType="java.lang.Long">
+    select count(*) from vaka_oss
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update vaka_oss
+    <set>
+      <if test="record.fId != null">
+        F_ID = #{record.fId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fName != null">
+        F_NAME = #{record.fName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fUrl != null">
+        F_URL = #{record.fUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fBucket != null">
+        F_BUCKET = #{record.fBucket,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isFolder != null">
+        IS_FOLDER = #{record.isFolder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDelete != null">
+        IS_DELETE = #{record.isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serverPath != null">
+        SERVER_PATH = #{record.serverPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update vaka_oss
+    set F_ID = #{record.fId,jdbcType=INTEGER},
+      F_NAME = #{record.fName,jdbcType=VARCHAR},
+      F_URL = #{record.fUrl,jdbcType=VARCHAR},
+      F_BUCKET = #{record.fBucket,jdbcType=VARCHAR},
+      IS_FOLDER = #{record.isFolder,jdbcType=VARCHAR},
+      IS_DELETE = #{record.isDelete,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      SERVER_PATH = #{record.serverPath,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjl.mouse.mousedb.model.VakaOss">
+    update vaka_oss
+    <set>
+      <if test="fName != null">
+        F_NAME = #{fName,jdbcType=VARCHAR},
+      </if>
+      <if test="fUrl != null">
+        F_URL = #{fUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fBucket != null">
+        F_BUCKET = #{fBucket,jdbcType=VARCHAR},
+      </if>
+      <if test="isFolder != null">
+        IS_FOLDER = #{isFolder,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE = #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="serverPath != null">
+        SERVER_PATH = #{serverPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where F_ID = #{fId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjl.mouse.mousedb.model.VakaOss">
+    update vaka_oss
+    set F_NAME = #{fName,jdbcType=VARCHAR},
+      F_URL = #{fUrl,jdbcType=VARCHAR},
+      F_BUCKET = #{fBucket,jdbcType=VARCHAR},
+      IS_FOLDER = #{isFolder,jdbcType=VARCHAR},
+      IS_DELETE = #{isDelete,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      SERVER_PATH = #{serverPath,jdbcType=VARCHAR}
+    where F_ID = #{fId,jdbcType=INTEGER}
+  </update>
+</mapper>
