@@ -30,14 +30,14 @@
         <!-- 自动扫描mapping.xml文件 -->
         <property name="mapperLocations">
             <list>
-                <value>classpath*:com/zjl/mouse/mousedb/**/dao/sqlmap/*.xml</value>
+                <value>classpath*:com/zjl/mouse/db/**/dao/sqlmap/*.xml</value>
             </list>
         </property>
-        <property name="typeAliasesPackage" value="com.zjl.mouse.mousedb.model"></property>
+        <property name="typeAliasesPackage" value="com.zjl.mouse.db.model"></property>
     </bean>
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.zjl.mouse.mousedb.dao" />
+        <property name="basePackage" value="com.zjl.mouse.db.dao" />
         <property name="sqlSessionFactoryBeanName" value="espSqlSessionFactory"></property>
     </bean>
     <aop:config>

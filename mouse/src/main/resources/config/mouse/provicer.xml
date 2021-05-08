@@ -8,5 +8,5 @@
        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.zjl.mouse.mouseclient.test.service.TestService" ref="testServiceImpl" version="2.0.0"/>
+    <dubbo:service interface="com.zjl.mouse.client.test.service.TestService" ref="testServiceImpl" version="2.0.0"/>
 </beans>

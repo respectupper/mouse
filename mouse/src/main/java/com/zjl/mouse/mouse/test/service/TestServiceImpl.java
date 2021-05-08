@@ -1,11 +1,11 @@
 package com.zjl.mouse.mouse.test.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zjl.mouse.mouseclient.test.vo.req.TestReqVO;
-import com.zjl.mouse.mouseclient.test.vo.res.TestResVO;
-import com.zjl.mouse.mouseclient.test.service.TestService;
-import com.zjl.mouse.mousedb.dao.VakaUserDAO;
-import com.zjl.mouse.mousedb.model.VakaUser;
+import com.zjl.mouse.client.test.vo.req.TestReqVO;
+import com.zjl.mouse.client.test.vo.res.TestResVO;
+import com.zjl.mouse.client.test.service.TestService;
+import com.zjl.mouse.db.dao.VakaUserDAO;
+import com.zjl.mouse.db.model.VakaUser;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
